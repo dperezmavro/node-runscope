@@ -1,5 +1,6 @@
 const expect = require('expect');
 const sinon = require('sinon');
+const uuid = require('uuid');
 
 const Bucket = require('../../clients/bucket.js');
 const Runscope = require('../../lib/runscope.js');
@@ -32,6 +33,11 @@ describe('Bucket', () => {
         var a = b.bucketList();
 
         expect(a.then).toNotBe(undefined);
+    });
 
-    })
+    it('Should return promise for get request', () => {
+        var b = new Bucket(undefined, undefined);
+        var id = uuid();
+        expect(b.getBucketDetailsUrl(id)).toBe(`/buckets/${id}`);
+    });
 });

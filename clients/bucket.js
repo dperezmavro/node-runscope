@@ -13,6 +13,10 @@ class Bucket extends Runscope {
     bucketList(){
         return this.get(this.getBucketListUrl());
     }
+
+    getBucketDetailsUrl(bucketKey){
+        return this.getBucketListUrl() + `/${bucketKey}`;
+    }
 }
 
 module.exports = Bucket;
