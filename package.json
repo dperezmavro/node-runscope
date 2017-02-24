@@ -1,6 +1,6 @@
 {
   "name": "runscope",
-  "version": "0.2.0",
+  "version": "0.0.5",
   "description": "Client to interact with the Runscope API.",
   "main": "index.js",
   "repository": {
