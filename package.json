@@ -1,0 +1,30 @@
+{
+  "name": "runscope",
+  "version": "0.2.0",
+  "description": "Client to interact with the Runscope API.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lastmilelink/platform_aws_scripts/"
+  },
+  "scripts": {
+    "coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha test/**/*.js",
+    "lint": "./node_modules/.bin/eslint *.js",
+    "start": "echo \"TODO yet\" && exit 1",
+    "test": "./node_modules/mocha/bin/mocha test/**/*.js && npm run-script lint"
+  },
+  "author": "Dionisio Perez-Mavrogenis",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.15.3"
+  },
+  "devDependencies": {
+    "eslint": "^3.15.0",
+    "expect": "^1.20.2",
+    "istanbul": "^0.4.5",
+    "js-beautify": "^1.6.8",
+    "mocha": "^3.2.0",
+    "mocha-istanbul": "^0.3.0",
+    "sinon": "^1.17.7"
+  }
+}
