@@ -3,7 +3,8 @@ var Runscope = require('../lib/runscope.js');
 class Bucket extends Runscope {
     constructor(token, bucket_key){
         super(token);
-        this.bucket_key = bucket_key;
+        this.bucketKey = bucket_key;
+        this.bucketName = undefined;
     }
 
     getBucketListUrl(){
@@ -16,6 +17,11 @@ class Bucket extends Runscope {
 
     getBucketDetailsUrl(bucketKey){
         return this.getBucketListUrl() + `/${bucketKey}`;
+    }
+
+    bucketDetails(bucketKey){
+        this.bucketKey = bucketKey;
+        return this.get(this.getBucketDetailsUrl(bucketKey));
     }
 }
 
