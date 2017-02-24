@@ -1,4 +1,5 @@
 const expect = require('expect');
+const sinon = require('sinon');
 
 const Bucket = require('../../clients/bucket.js');
 const Runscope = require('../../lib/runscope.js');
@@ -12,5 +13,25 @@ describe('Bucket', () => {
     it('Should extend runscope', () => {
         var b = new Bucket(undefined);
         expect(b instanceof Runscope).toBe(true);
+    });
+
+    it('Should return the bucket list url', () => {
+        var b = new Bucket(undefined, undefined);
+        expect(b.getBucketListUrl()).toEqual("/buckets");
+    });
+
+    it('Should return promise for get request', () => {
+        var instance = {get: function(){}};
+        sinon.stub(instance, 'get', function(url) {
+            expect(url).toEqual('/buckets');
+            return new Promise((acc, rej) => {});
+        })
+
+        var b = new Bucket(undefined, undefined);
+        b.instance = instance;
+        var a = b.bucketList();
+
+        expect(a.then).toNotBe(undefined);
+
     })
 });
