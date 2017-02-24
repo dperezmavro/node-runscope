@@ -12,6 +12,12 @@ class Bucket extends Runscope {
         return "/buckets";
     }
 
+    /**
+     * Get a list of buckets.
+     *
+     * @see [Bucket List]{@link https://www.runscope.com/docs/api/buckets#bucket-list}
+     * @returns {Array} The current value of the tag.
+     */
     bucketList(){
         return new Promise((acc, rej) => {
             this.get(this.getBucketListUrl())
@@ -28,6 +34,14 @@ class Bucket extends Runscope {
         return this.getBucketListUrl() + `/${bucketKey}`;
     }
 
+    /**
+     * Get the details for bucketKeycurrent value of the tag.
+     *
+     * @param {string} bucketKey - Bucket Key to fetch
+     *
+     * @see [Bucket Detail]{@link https://www.runscope.com/docs/api/buckets#bucket-detail}
+     * @returns {Object} The current value of the tag.
+     */
     bucketDetails(bucketKey){
         this.bucketKey = bucketKey;
         return new Promise((acc, rej) => {
