@@ -37,6 +37,23 @@ describe('Bucket', () => {
             "status": "success"
         }
     };
+    const bucketDetails = {
+        "auth_token": null,
+        "default": false,
+        "key": uuid(),
+        "name": "Mobile Apps",
+        "team": {
+            "name": "Mobile Team",
+            "uuid": uuid()
+        },
+        "verify_ssl": true
+    }
+    const bucketDetailsResponse = {
+        "data": bucketDetails,
+        "meta": {
+            "status": "success"
+        }
+    }
 
     it('Should exist',() => {
         expect(Bucket).toExist();
@@ -91,7 +108,7 @@ describe('Bucket', () => {
         var id = uuid();
         sinon.stub(instance, 'get', function(url) {
             return new Promise((acc, rej) => {
-                res(id);
+                rej(id);
             });
         })
 
@@ -143,25 +160,19 @@ describe('Bucket', () => {
 
     it('Should set this.bucketName for /buckets/<id>', () => {
         var instance = {get: function(){}};
-        var id = uuid();
-        var name = uuid();
         sinon.stub(instance, 'get', function(url) {
-            expect(url).toEqual(`/buckets/${id}`);
+            expect(url).toEqual(`/buckets/${bucketDetails.key}`);
             return new Promise((acc, rej) => {
-                acc( {
-                    data: {
-                        name: name
-                    }
-                });
+                acc(bucketDetailsResponse);
             });
         })
 
         var b = new Bucket(undefined, undefined);
         b.instance = instance;
-        b.bucketDetails(id)
+        b.bucketDetails(bucketDetails.key)
         .then((data) => {
-            expect(b.bucketKey).toEqual(id);
-            expect(b.bucketName).toEqual(name);
+            expect(b.bucketKey).toEqual(bucketDetails.key);
+            expect(b.bucketName).toEqual(bucketDetails.name);
         });
     });
 
@@ -169,16 +180,10 @@ describe('Bucket', () => {
         var instance = {get: function(){}};
         var id = uuid();
         var name = uuid();
-        const response = {
-            data: {
-                name: name,
-                id: id
-            }
-        };
         sinon.stub(instance, 'get', function(url) {
             expect(url).toEqual(`/buckets/${id}`);
             return new Promise((acc, rej) => {
-                acc(response);
+                acc(bucketDetailsResponse);
             });
         })
 
@@ -186,7 +191,7 @@ describe('Bucket', () => {
         b.instance = instance;
         b.bucketDetails(id)
         .then((data) => {
-            expect(b.data).toEqual(response.data);
+            expect(b.data).toEqual(bucketDetails);
         });
     });
 
