@@ -6,6 +6,38 @@ const Bucket = require('../../clients/bucket.js');
 const Runscope = require('../../lib/runscope.js');
 
 describe('Bucket', () => {
+    const bucketData = [
+        {
+            "auth_token": null,
+            "default": false,
+            "key": uuid(),
+            "name": "Lucky Notebook",
+            "team": {
+                "name": "Personal Team",
+                "uuid": uuid()
+            },
+            "verify_ssl": true
+        },
+        {
+            "auth_token": null,
+            "default": false,
+            "key": uuid(),
+            "auth_token": uuid(),
+            "name": "Mobile Apps",
+            "team": {
+                "name": "Mobile Team",
+                "uuid": uuid()
+            },
+            "verify_ssl": true
+        },
+    ];
+    const bucketList = {
+        "data": bucketData,
+        "meta": {
+            "status": "success"
+        }
+    };
+
     it('Should exist',() => {
         expect(Bucket).toExist();
         expect(Bucket).toNotEqual({});
@@ -33,6 +65,45 @@ describe('Bucket', () => {
         var a = b.bucketList();
 
         expect(a.then).toNotBe(undefined);
+    });
+
+    it('Should return data for /buckets', () => {
+        var instance = {get: function(){}};
+        sinon.stub(instance, 'get', function(url) {
+            return new Promise((acc, rej) => {
+                acc(bucketList);
+            });
+        })
+
+        var b = new Bucket(undefined, undefined);
+        b.instance = instance;
+        b.bucketList()
+        .then((response) => {
+            expect(response).toEqual(bucketData);
+        },
+        (err) => {
+            expect(0).toBe(1);
+        });
+    });
+
+    it('Should fail for /buckets', () => {
+        var instance = {get: function(){}};
+        var id = uuid();
+        sinon.stub(instance, 'get', function(url) {
+            return new Promise((acc, rej) => {
+                res(id);
+            });
+        })
+
+        var b = new Bucket(undefined, undefined);
+        b.instance = instance;
+        b.bucketList()
+        .then((response) => {
+            expect(0).toBe(1);
+        },
+        (err) => {
+            expect(err).toBe(id);
+        });
     });
 
     it('Should return correct /buckets/<id> url', () => {
