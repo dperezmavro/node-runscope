@@ -69,4 +69,22 @@ describe('Bucket', () => {
         b.bucketDetails(id);
         expect(b.bucketKey).toEqual(id);
     });
+
+    it('Should set this.bucketName for /buckets/<id>', () => {
+        var instance = {get: function(){}};
+        var id = uuid();
+        var name = uuid();
+        sinon.stub(instance, 'get', function(url) {
+            expect(url).toEqual(`/buckets/${id}`);
+            return new Promise((acc, rej) => {});
+        })
+
+        var b = new Bucket(undefined, undefined);
+        b.instance = instance;
+        b.bucketDetails(id);
+        expect(b.bucketKey).toEqual(id);
+        expect(b.bucketName).toEqual(name);
+    });
+
+
 });
