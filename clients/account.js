@@ -10,6 +10,12 @@ class Account extends Runscope {
         return '/account';
     }
 
+    /**
+    * Get the current account details.
+    *
+    * @see [Account Resource]{@link https://www.runscope.com/docs/api/account}
+    * @returns {Object} Account object.
+    */
     accountResource(){
         return new Promise((acc, rej) => {
             this.get(this.getAccountUrl())

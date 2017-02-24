@@ -16,7 +16,7 @@ class Bucket extends Runscope {
      * Get a list of buckets.
      *
      * @see [Bucket List]{@link https://www.runscope.com/docs/api/buckets#bucket-list}
-     * @returns {Array} The current value of the tag.
+     * @returns {Array} Of Bucket objects.
      */
     bucketList(){
         return new Promise((acc, rej) => {
@@ -40,7 +40,7 @@ class Bucket extends Runscope {
      * @param {string} bucketKey - Bucket Key to fetch
      *
      * @see [Bucket Detail]{@link https://www.runscope.com/docs/api/buckets#bucket-detail}
-     * @returns {Object} The current value of the tag.
+     * @returns {Object} Bucket Object.
      */
     bucketDetails(bucketKey){
         this.bucketKey = bucketKey;
