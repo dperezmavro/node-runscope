@@ -25,6 +25,7 @@
     "js-beautify": "^1.6.8",
     "mocha": "^3.2.0",
     "mocha-istanbul": "^0.3.0",
-    "sinon": "^1.17.7"
+    "sinon": "^1.17.7",
+    "uuid": "^3.0.1"
   }
 }
