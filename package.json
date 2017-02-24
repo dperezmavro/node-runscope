@@ -1,11 +1,11 @@
 {
   "name": "runscope",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Client to interact with the Runscope API.",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lastmilelink/platform_aws_scripts/"
+    "url": "https://github.com/dperezmavro/node-runscope"
   },
   "scripts": {
     "coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha test/**/*.js",
@@ -14,7 +14,7 @@
     "test": "./node_modules/mocha/bin/mocha test/"
   },
   "author": "Dionisio Perez-Mavrogenis",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "axios": "^0.15.3"
   },
