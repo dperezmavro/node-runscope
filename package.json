@@ -11,7 +11,7 @@
     "coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha test/**/*.js",
     "lint": "./node_modules/.bin/eslint *.js",
     "start": "echo \"TODO yet\" && exit 1",
-    "test": "./node_modules/mocha/bin/mocha test/**/*.js && npm run-script lint"
+    "test": "./node_modules/mocha/bin/mocha test/ && npm run-script lint"
   },
   "author": "Dionisio Perez-Mavrogenis",
   "license": "ISC",
