@@ -76,15 +76,68 @@ describe('Bucket', () => {
         var name = uuid();
         sinon.stub(instance, 'get', function(url) {
             expect(url).toEqual(`/buckets/${id}`);
-            return new Promise((acc, rej) => {});
+            return new Promise((acc, rej) => {
+                acc( {
+                    data: {
+                        name: name
+                    }
+                });
+            });
         })
 
         var b = new Bucket(undefined, undefined);
         b.instance = instance;
-        b.bucketDetails(id);
-        expect(b.bucketKey).toEqual(id);
-        expect(b.bucketName).toEqual(name);
+        b.bucketDetails(id)
+        .then((data) => {
+            expect(b.bucketKey).toEqual(id);
+            expect(b.bucketName).toEqual(name);
+        });
     });
 
+    it('Should set this.data for /buckets/<id>', () => {
+        var instance = {get: function(){}};
+        var id = uuid();
+        var name = uuid();
+        const response = {
+            data: {
+                name: name,
+                id: id
+            }
+        };
+        sinon.stub(instance, 'get', function(url) {
+            expect(url).toEqual(`/buckets/${id}`);
+            return new Promise((acc, rej) => {
+                acc(response);
+            });
+        })
+
+        var b = new Bucket(undefined, undefined);
+        b.instance = instance;
+        b.bucketDetails(id)
+        .then((data) => {
+            expect(b.data).toEqual(response.data);
+        });
+    });
+
+    it('Should should call the failure handler for /buckets/<id>', () => {
+        var instance = {get: function(){}};
+        var id = uuid();
+        sinon.stub(instance, 'get', function(url) {
+            expect(url).toEqual(`/buckets/${id}`);
+            return new Promise((acc, rej) => {
+                rej(id);
+            });
+        })
+
+        var b = new Bucket(undefined, undefined);
+        b.instance = instance;
+        b.bucketDetails(id)
+        .then((data) => {
+            expect(0).toBe(1);
+        },
+        (err) => {
+            expect(err).toEqual(id);
+        });
+    });
 
 });
