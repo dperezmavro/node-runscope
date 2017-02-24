@@ -1,6 +1,9 @@
+var Runscope = require('../lib/runscope.js');
 
-class Bucket {
-
+class Bucket extends Runscope {
+    constructor(token){
+        super(token);
+    }
 }
 
 module.exports = Bucket;

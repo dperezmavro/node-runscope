@@ -1,10 +1,16 @@
 const expect = require('expect');
 
-const bucket = require('../../clients/bucket.js');
+const Bucket = require('../../clients/bucket.js');
+const Runscope = require('../../lib/runscope.js');
 
 describe('Bucket', () => {
     it('Should exist',() => {
-        expect(bucket).toExist();
-        expect(bucket).toNotEqual({})
+        expect(Bucket).toExist();
+        expect(Bucket).toNotEqual({});
     });
+
+    it('Should extend runscope', () => {
+        var b = new Bucket(undefined);
+        expect(b instanceof Runscope).toBe(true);
+    })
 });

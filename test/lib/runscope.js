@@ -1,14 +1,14 @@
 const expect = require('expect');
 
-const index = require('../index.js');
+const Runscope = require('../../lib/runscope.js');
 
-describe('index', () => {
+describe('Runscope', () => {
     it('Should run tests correctly',() => {
         expect(1).toBe(1);
     });
 
     it('Should exist', () => {
-        expect(index).toExist();
-        expect(index).toNotEqual({});
+        expect(Runscope).toExist();
+        expect(Runscope).toNotEqual({});
     })
 });
