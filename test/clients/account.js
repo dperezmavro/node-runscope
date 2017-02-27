@@ -5,7 +5,7 @@ const uuid = require('uuid');
 const Account = require('../../clients/account.js');
 const Runscope = require('../../lib/runscope.js');
 
-describe('Bucket', () => {
+describe('Account', () => {
     const apiData = {
         "name": "Grace Hopper",
         "uuid": uuid(),
