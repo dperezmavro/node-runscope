@@ -2,7 +2,7 @@ const expect = require('expect');
 
 const index = require('../index.js');
 
-describe('index', () => {
+describe('Index', () => {
     it('Should run tests correctly',() => {
         expect(1).toBe(1);
     });
