@@ -96,27 +96,26 @@ describe('Team', () => {
         },
         (e) => { expect(0).toBe(1)});
     });
-    //
-    // it('Should modify this.data for /account', () => {
-    //
-    //     var instance = {get: function(){}};
-    //     sinon.stub(instance, 'get', function(url) {
-    //         return new Promise((acc, rej) => {
-    //             acc(apiResponse);
-    //         });
-    //     });
-    //
-    //     var a = new Team(undefined);
-    //     a.instance = instance;
-    //     a.accountResource()
-    //     .then(
-    //     (resp) => {
-    //         expect(resp).toEqual(apiData);
-    //         expect(a.data).toEqual(apiData);
-    //     },
-    //     (err) => {
-    //         expect(0).toBe(1);
-    //     });
-    // });
 
+    it('Should modify this.data for /account', () => {
+        var id = uuid();
+        var instance = {get: function(){}};
+        sinon.stub(instance, 'get', function(url) {
+            return new Promise((acc, rej) => {
+                acc(apiData);
+            });
+        });
+
+        var a = new Team(undefined);
+        a.instance = instance;
+        a.teamMembersList(id)
+        .then(
+        (resp) => {
+            expect(resp).toEqual(apiData);
+            expect(a.data).toEqual(apiData);
+        },
+        (err) => {
+            expect(0).toBe(1);
+        });
+    });
 });
