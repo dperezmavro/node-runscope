@@ -58,7 +58,6 @@ class Bucket extends Runscope {
         });
     }
 
-
     generateTestListUrl(){
         return `/buckets/${this.bucketKey}/tests`
     }
