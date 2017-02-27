@@ -6,6 +6,7 @@ class Bucket extends Runscope {
         this.bucketKey = bucket_key;
         this.bucketName = undefined;
         this.data = undefined;
+        this.testList = undefined;
     }
 
     getBucketListUrl(){
@@ -55,6 +56,28 @@ class Bucket extends Runscope {
                 rej(err);
             });
         });
+    }
+
+
+    generateTestListUrl(){
+        return `/buckets/${this.bucketKey}/tests`
+    }
+    /**
+    * @see https://www.runscope.com/docs/api/tests#list
+    */
+    getTestList(){
+        return new Promise((acc, rej) => {
+            this.get(this.generateTestListUrl())
+            .then(
+                (data) => {
+                    this.testList = data.data;
+                    acc(data.data);
+                },
+                (err) => {
+                    rej(err);
+                }
+            );
+        })
     }
 }
 

@@ -273,4 +273,34 @@ describe('Bucket', () => {
             (err) => {expect(err).toEqual(id);}
         );
     });
+
+    it('Should resolve promise for /buckets/id/tests', () => {
+        var instance = {get: function(){}};
+        sinon.stub(instance, 'get', function(url) {
+            return new Promise((acc, rej) => { acc(testListApiResponse); });
+        })
+
+        var b = new Bucket(undefined, undefined);
+        b.instance = instance;
+        b.getTestList()
+        .then(
+            (data) => {expect(data).toEqual(testList);},
+            (err) => {expect(0).toBe(1);}
+        );
+    });
+
+    it('Should modify this.testList promise for /buckets/id/tests', () => {
+        var instance = {get: function(){}};
+        sinon.stub(instance, 'get', function(url) {
+            return new Promise((acc, rej) => { acc(testListApiResponse); });
+        })
+
+        var b = new Bucket(undefined, undefined);
+        b.instance = instance;
+        b.getTestList()
+        .then(
+            (data) => {expect(b.testList).toEqual(testList);},
+            (err) => {expect(0).toBe(1);}
+        );
+    });
 });
