@@ -17,8 +17,8 @@ class Team extends Runscope {
         return new Promise((acc, rej) => {
             this.get(this.getTeamsMemberListUrl(teamId))
             .then((data) => {
-                this.data = data.data;
-                acc(data.data);
+                this.data = data;
+                acc(data);
             },
             (err) => {
                 rej(err);

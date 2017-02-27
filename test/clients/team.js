@@ -46,52 +46,56 @@ describe('Team', () => {
         var res = a.teamMembersList(undefined);
         expect(res.then).toNotBe(undefined);
     });
-    //
-    // it('Should call /account with the correct parameters', () => {
-    //     var instance = {get: function(){}};
-    //     sinon.stub(instance, 'get', function(url) {
-    //         expect(url).toEqual('/account');
-    //         return new Promise((acc, rej) => {});
-    //     });
-    //
-    //     var a = new Team(undefined);
-    //     a.accountResource();
-    // });
-    //
-    // it('Should fail promise for /account', () => {
-    //     var instance = {get: function(){}};
-    //     var id = uuid();
-    //     sinon.stub(instance, 'get', function(url) {
-    //         return new Promise((acc, rej) => {
-    //             rej(id);
-    //         });
-    //     });
-    //
-    //     var a = new Team(undefined);
-    //     a.instance = instance;
-    //     a.accountResource()
-    //     .then((e) => { expect(0).toBe(1)},
-    //     (err) => {
-    //         expect(err).toBe(id);
-    //     });
-    // });
-    //
-    // it('Should resolve promise for /account', () => {
-    //     var instance = {get: function(){}};
-    //     sinon.stub(instance, 'get', function(url) {
-    //         return new Promise((acc, rej) => {
-    //             acc(apiResponse);
-    //         });
-    //     });
-    //
-    //     var a = new Team(undefined);
-    //     a.instance = instance;
-    //     a.accountResource()
-    //     .then((data) => {
-    //         expect(data).toBe(apiData);
-    //     },
-    //     (e) => { expect(0).toBe(1)});
-    // });
+
+    it('Should call /teams/id/people with the correct parameters', () => {
+        var instance = {get: function(){}};
+        var id = uuid();
+        sinon.stub(instance, 'get', function(url) {
+            expect(url).toEqual(`/teams/${id}/people`);
+            return new Promise((acc, rej) => {});
+        });
+
+        var a = new Team(undefined);
+        a.teamMembersList(id);
+    });
+
+    it('Should fail promise for /account', () => {
+        var instance = {get: function(){}};
+        var id = uuid();
+        sinon.stub(instance, 'get', function(url) {
+            return new Promise((acc, rej) => {
+                rej(id);
+            });
+        });
+
+        var a = new Team(undefined);
+        a.instance = instance;
+        a.teamMembersList(id)
+        .then(
+            (e) => { expect(0).toBe(1)},
+            (err) => {
+                expect(err).toBe(id);
+            }
+        );
+    });
+
+    it('Should resolve promise for /account', () => {
+        var id = uuid();
+        var instance = {get: function(){}};
+        sinon.stub(instance, 'get', function(url) {
+            return new Promise((acc, rej) => {
+                acc(apiData);
+            });
+        });
+
+        var a = new Team(undefined);
+        a.instance = instance;
+        a.teamMembersList(id)
+        .then((data) => {
+            expect(data).toBe(apiData);
+        },
+        (e) => { expect(0).toBe(1)});
+    });
     //
     // it('Should modify this.data for /account', () => {
     //
