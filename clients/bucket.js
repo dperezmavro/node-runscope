@@ -24,13 +24,13 @@ class Bucket extends Runscope {
     bucketList(){
         return new Promise((acc, rej) => {
             this.get(this.getBucketListUrl())
-            .then((resp) => {
-                acc(resp.data);
-            },
-            (err) => {
-                rej(err);
-            });
-        });
+            .then(
+                (resp) => {
+                    acc(resp.data);
+                },
+                rej
+            );
+        })
     }
 
     getBucketDetailsUrl(bucketKey){
@@ -50,16 +50,17 @@ class Bucket extends Runscope {
         return new Promise((acc, rej) => {
 
             this.get(this.getBucketDetailsUrl(bucketKey))
-            .then((data) => {
-                this.bucketName = data.data.name;
-                this.data = data.data;
-                acc(data.data);
-            }, (err) => {
-                rej(err);
-            });
+            .then(
+                (data) => {
+                    this.bucketName = data.data.name;
+                    this.data = data.data;
+                    acc(data.data);
+                },
+                rej
+            );
         });
     }
-
+    
     generateTestListUrl(){
         return `/buckets/${this.bucketKey}/tests`
     }
@@ -74,9 +75,7 @@ class Bucket extends Runscope {
                     this.testList = data.data;
                     acc(data.data);
                 },
-                (err) => {
-                    rej(err);
-                }
+                rej
             );
         })
     }
