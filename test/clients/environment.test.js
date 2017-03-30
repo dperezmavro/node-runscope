@@ -154,6 +154,69 @@ describe('Environment', () => {
         expect(b.generateGetEnvironmentDetailsUrl(eid)).toEqual(`/buckets/${bid}/environments/${eid}`);
     });
 
+    it('Should call instance with correct URL for getEnvironmentDetails', () => {
+        var eid = uuid();
+        var bid = uuid();
+        var b = new Environment(undefined, bid);
+
+        var instance = {get: function(){}};
+        sinon.stub(instance, 'get', function(url) {
+            return new Promise((acc, rej) => {
+                expect(url).toEqual(`/buckets/${bid}/environments/${eid}`);
+            });
+        });
+
+        b.instance = instance;
+        b.getEnvironmentDetails(eid);
+    });
+
+    it('Should return promise for getEnvironmentDetails', () => {
+        var instance = {get: function(){}};
+        sinon.stub(instance, 'get', function() {
+            return new Promise((acc, rej) => {});
+        })
+        var b = new Environment(undefined, undefined);
+        b.instance = instance;
+        var a = b.getEnvironmentDetails(undefined);
+        expect(a.then).toNotBe(undefined);
+    });
+
+    it('Should reject promise for getEnvironmentDetails url', () => {
+        var instance = {get: function(){}};
+        var id = uuid();
+        sinon.stub(instance, 'get', function() {
+            return new Promise((acc, rej) => {
+                rej(id);
+            });
+        } )
+        var b = new Environment(undefined, undefined);
+        b.instance = instance;
+        b.getEnvironmentDetails(undefined)
+        .then(
+            (data) => {expect(0).toBe(1);},
+            (err) => {expect(err).toEqual(id);}
+        );
+    });
+
+    it('Should resolve promise for getEnvironmentDetails url', () => {
+        var instance = {get: function(){}};
+        var id = uuid();
+        sinon.stub(instance, 'get', function() {
+            return new Promise((acc, rej) => {
+                acc({data: 'baz'});
+            });
+        } )
+        var b = new Environment(undefined, undefined);
+        b.instance = instance;
+        b.getEnvironmentDetails()
+        .then(
+            (data) => {expect(data).toEqual('baz');},
+            (err) => {expect(0).toBe(1);}
+        );
+    });
+
+
+
     it('Should generate getEnvironmentDetails url', () => {
         var eid = uuid();
         var tid = uuid();
