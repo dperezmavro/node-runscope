@@ -1,4 +1,6 @@
-var Runscope = require('../lib/runscope.js');
+const req = require('app-root-path').require;
+
+var Runscope = req('lib/runscope.js');
 
 class Team extends Runscope {
     constructor(token){

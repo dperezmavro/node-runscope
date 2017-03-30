@@ -1,4 +1,6 @@
-var Runscope = require('../lib/runscope.js');
+const req = require('app-root-path').require;
+
+var Runscope = req('lib/runscope.js');
 
 class Test extends Runscope {
     constructor(token, bucket_key, test_id){

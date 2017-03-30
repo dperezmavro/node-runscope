@@ -1,9 +1,10 @@
 const expect = require('expect');
 const sinon = require('sinon');
 const uuid = require('uuid');
+const req = require('app-root-path').require;
 
-const Account = require('../../clients/account.js');
-const Runscope = require('../../lib/runscope.js');
+const Account = req('clients/account.js');
+const Runscope = req('lib/runscope.js');
 
 describe('Account', () => {
     const apiData = {
