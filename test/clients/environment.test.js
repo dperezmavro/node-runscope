@@ -146,4 +146,20 @@ describe('Environment', () => {
             (err) => {expect(0).toBe(1);}
         );
     });
+
+    it('Should generate getEnvironmentDetails url', () => {
+        var eid = uuid();
+        var bid = uuid();
+        var b = new Environment(undefined, bid);
+        expect(b.generateGetEnvironmentDetailsUrl(eid)).toEqual(`/buckets/${bid}/environments/${eid}`);
+    });
+
+    it('Should generate getEnvironmentDetails url', () => {
+        var eid = uuid();
+        var tid = uuid();
+        var bid = uuid();
+        var b = new Environment(undefined, bid);
+        expect(b.generateGetEnvironmentDetailsForTestUrl(tid, eid)).toEqual(`/buckets/${bid}/tests/${tid}/environments/${eid}`);
+    });
+
 });

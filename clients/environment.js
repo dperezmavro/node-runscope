@@ -47,6 +47,44 @@ class Environment extends Runscope {
             );
         });
     }
+
+    generateGetEnvironmentDetailsUrl(eid){
+        return `/buckets/${this.bucketKey}/environments/${eid}`;
+    }
+
+    /**
+    * @see https://www.runscope.com/docs/api/environments#detail
+    */
+    getEnvironmentDetails(envId){
+        return new Promise((acc, rej) => {
+            this.get(this.generateGetEnvironmentDetailsUrl(envId))
+            .then(
+                (data) => {
+                    acc(data.data);
+                },
+                rej
+            );
+        });
+    }
+
+    generateGetEnvironmentDetailsForTestUrl(tid, eid){
+        return `/buckets/${this.bucketKey}/tests/${tid}/environments/${eid}`;
+    }
+
+    /**
+    * @see https://www.runscope.com/docs/api/environments#detail
+    */
+    getEnvironmentDetailsForTest(testId, envId){
+        return new Promise((acc, rej) => {
+            this.get(this.generateGetEnvironmentDetailsForTestUrl(testId, envId))
+            .then(
+                (data) => {
+                    acc(data.data);
+                },
+                rej
+            );
+        });
+    }
 }
 
 module.exports = Environment;
