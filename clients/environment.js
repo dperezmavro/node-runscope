@@ -3,11 +3,10 @@ const req = require('app-root-path').require;
 var Runscope = req('lib/runscope.js');
 
 class Environment extends Runscope {
-    constructor(token, bucket_key, test_id){
+    constructor(token, bucket_key){
         super(token);
         this.bucketKey = bucket_key;
         this.bucketName = undefined;
-        this.testList = undefined;
     }
 
     generateListEnvironmentsUrl(tid){
