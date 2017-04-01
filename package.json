@@ -1,5 +1,5 @@
 {
-  "name": "runscope",
+  "name": "npm-runscope",
   "version": "1.0.1",
   "description": "Client to interact with the Runscope API.",
   "main": "index.js",
