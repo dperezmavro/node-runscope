@@ -1,6 +1,4 @@
-const req = require('app-root-path').require;
-
-var Runscope = req('lib/runscope.js');
+var Runscope = require('../lib/runscope.js');
 
 class Environment extends Runscope {
     constructor(token, bucket_key){

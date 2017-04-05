@@ -1,9 +1,7 @@
-const req = require('app-root-path').require;
-
 module.exports = {
-    Account: req('clients/account.js'),
-    Bucket: req('clients/bucket.js'),
-    Environment: req('clients/environment.js'),
-    Team: req('clients/team.js'),
-    Test: req('clients/test.js')
+    Account: require('./account.js'),
+    Bucket: require('./bucket.js'),
+    Environment: require('./environment.js'),
+    Team: require('./team.js'),
+    Test: require('./test.js')
 }
