@@ -1,0 +1,19 @@
+machine:
+  node:
+    version: 6.10.0
+
+dependencies:
+  pre:
+    - echo -e "${NPM_USER}\n${NPM_PASS}\n${EMAIL}" | npm login
+  override:
+    - npm install
+
+test:
+  override:
+    - echo "I don't think there are tests..." && exit 0
+
+deployment:
+  dev:
+    branch: master
+    commands:
+      - npm publish
