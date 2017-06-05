@@ -26,7 +26,7 @@ class Test extends Runscope {
           this.data = data.data
           acc(data.data)
         },
-        err
+        rej
       )
     })
   }
