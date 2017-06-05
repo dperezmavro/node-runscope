@@ -5,6 +5,7 @@ class Test extends Runscope {
     super(token)
     this.bucketKey = bucket_key
     this.testId = test_id
+    this.testCount = 30
     this.data = undefined
     this.testList = undefined
   }
@@ -15,6 +16,10 @@ class Test extends Runscope {
 
   generateTestDetailUrl() {
     return this.generateBucketTestsUrl() + `/${this.testId}`
+  }
+
+  generateTestResultsUrl() {
+    return this.generateTestDetailUrl() + `/results?count=${this.testCount}`
   }
 
   /**
@@ -30,6 +35,19 @@ class Test extends Runscope {
           acc(data.data)
         },
         rej
+      )
+    })
+  }
+
+  getLatestTestResults() {
+    return new Promise((accept, reject) => {
+      this.get(
+        this.generateTestResultsUrl()
+      ).then(
+        ({data: {data}}) => {
+          accept(data)
+        },
+        reject
       )
     })
   }

@@ -190,12 +190,6 @@ describe('Test', () => {
     );
   });
 
-
-
-
-
-
-
   it('Should call instance with correct URL for POST /buckets/id/tests', () => {
     var bid = uuid();
     var b = new Test(undefined, bid, undefined);
