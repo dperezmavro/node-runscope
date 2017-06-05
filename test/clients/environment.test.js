@@ -15,16 +15,27 @@ describe('Environment', () => {
     expect(Environment).toNotEqual({});
   });
 
+  it('Should instantiate', () => {
+    let a
+
+    a = new Environment()
+    expect(a).toExist()
+  })
+
   it('Should extend runscope', () => {
-    var b = new Environment(undefined, undefined, undefined);
-    expect(b instanceof Runscope).toBe(true);
+    const b = new Environment(undefined, undefined, undefined);
+    expect(
+      b instanceof Runscope
+    ).toBe(true);
   });
 
   it('Should generate /buckets/id/tests/id/environments url', () => {
     var tid = uuid();
     var bid = uuid();
     var b = new Environment(undefined, bid);
-    expect(b.generateListEnvironmentsUrl(tid)).toEqual(`/buckets/${bid}/tests/${tid}/environments`);
+    expect(
+      b.generateListEnvironmentsUrl(tid)
+    ).toEqual(`/buckets/${bid}/tests/${tid}/environments`);
   });
 
   it('Should call instance with correct URL for /buckets/id/tests/id/environments', () => {

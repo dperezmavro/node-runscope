@@ -5,7 +5,7 @@ const {
   Team,
   Test
 } = require('./dist/all.js');
-const Runscope = require('./dist/runscope.js')
+const {Runscope} = require('./dist/runscope.js')
 
 module.exports = {
   Account,

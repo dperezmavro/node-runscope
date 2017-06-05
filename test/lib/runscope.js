@@ -7,4 +7,11 @@ describe('Runscope', () => {
     expect(Runscope).toExist();
     expect(Runscope).toNotEqual({});
   })
+
+  it('Should instantiate', () => {
+    let a
+
+    a = new Runscope()
+    expect(a).toExist()
+  })
 });

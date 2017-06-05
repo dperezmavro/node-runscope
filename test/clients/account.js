@@ -32,6 +32,13 @@ describe('Account', () => {
     expect(Account).toNotEqual({});
   });
 
+  it('Should instantiate', () => {
+    let a
+
+    a = new Account()
+    expect(a).toExist()
+  })
+
   it('Should extend runscope', () => {
     var b = new Account(undefined);
     expect(
