@@ -1,10 +1,12 @@
 const expect = require('expect');
 
-const all = require('../../clients/all.js');
+const clients = require('../../dist/all.js');
 
 describe('All', () => {
-    it('Should exist',() => {
-        expect(all).toExist();
-        expect(all).toNotEqual({})
-    });
+  it('Should exist',() => {
+    expect(clients).toExist();
+    expect(
+      clients
+    ).toNotEqual({})
+  });
 });

@@ -1,7 +1,17 @@
-const core = require('./dist/core.js');
+const {
+  Account,
+  Bucket,
+  Environment,
+  Team,
+  Test
+} = require('./dist/core.js');
 const runscope = require('./dist/runscope.js')
 
 module.exports = {
-  ...core,
+  Account,
+  Bucket,
+  Environment,
+  Team,
+  Test,
   runscope
 }
