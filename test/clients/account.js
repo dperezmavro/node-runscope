@@ -64,6 +64,7 @@ describe('Account', () => {
     });
 
     var a = new Account(undefined);
+    a.instance = instance
     a.accountResource();
   });
 
