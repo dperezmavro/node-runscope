@@ -4,8 +4,8 @@ const {
   Environment,
   Team,
   Test
-} = require('./dist/core.js');
-const runscope = require('./dist/runscope.js')
+} = require('./dist/all.js');
+const Runscope = require('./dist/runscope.js')
 
 module.exports = {
   Account,
@@ -13,5 +13,5 @@ module.exports = {
   Environment,
   Team,
   Test,
-  runscope
+  Runscope
 }

@@ -6,7 +6,6 @@ module.exports = {
   entry: {
     runscope: './lib/runscope.js',
     all: './clients/all.js',
-    core: './lib/core.js',
   },
   target: 'node',
   resolve: {
