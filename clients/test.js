@@ -5,13 +5,16 @@ class Test extends Runscope {
     super(token)
     this.bucketKey = bucket_key
     this.testId = test_id
-    this.bucketName = undefined
     this.data = undefined
     this.testList = undefined
   }
 
+  generateBucketTestsUrl() {
+    return `/buckets/${this.bucketKey}/tests`
+  }
+
   generateTestDetailUrl() {
-    return `/buckets/${this.bucketKey}/tests/${this.testId}`
+    return this.generateBucketTestsUrl() + `/${this.testId}`
   }
 
   /**
@@ -29,6 +32,20 @@ class Test extends Runscope {
         rej
       )
     })
+  }
+
+  createTestPostBody(name) {
+    return {
+      name
+    }
+  }
+
+  createTest(testName) {
+    var payload = this.createTestPostBody(testName)
+    return this.instance.post(
+      this.generateBucketTestsUrl(this.bucketKey),
+      payload
+    )
   }
 }
 

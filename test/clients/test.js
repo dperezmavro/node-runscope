@@ -94,6 +94,11 @@ describe('Test', () => {
     expect(b instanceof Runscope).toBe(true);
   });
 
+  it('Should instantiate', () => {
+    let a = new Test()
+    expect(a).toExist()
+  })
+
   it('Should generate /buckets/id/tests/id url', () => {
     var tid = uuid();
     var bid = uuid();
@@ -109,7 +114,9 @@ describe('Test', () => {
     var instance = {get: function(){}};
     sinon.stub(instance, 'get', function(url) {
       return new Promise((acc, rej) => {
-        expect(url).toEqual(`/buckets/${bid}/tests/${tid}`);
+        expect(
+          url
+        ).toEqual(`/buckets/${bid}/tests/${tid}`);
       });
     });
 
@@ -179,6 +186,80 @@ describe('Test', () => {
       (data) => {
         expect(b.data).toEqual(testDetails);
       },
+      (err) => {expect(0).toBe(1);}
+    );
+  });
+
+
+
+
+
+
+
+  it('Should call instance with correct URL for POST /buckets/id/tests', () => {
+    var bid = uuid();
+    var b = new Test(undefined, bid, undefined);
+
+    var instance = {post: function(){}};
+    sinon.stub(instance, 'post', function(url, data) {
+      return new Promise((acc, rej) => {
+        expect(
+          url
+        ).toEqual(`/buckets/${bid}/tests`);
+
+        expect(
+          data
+        ).toEqual({name: 'newTestName'});
+      });
+    });
+
+    b.instance = instance;
+    b.createTest('newTestName');
+  });
+
+  it('Should return  promise for POST /buckets/id/tests', () => {
+    var instance = {post: function(){}};
+    sinon.stub(instance, 'post', function() {
+      return new Promise((acc, rej) => {
+        acc();
+      });
+    })
+    var b = new Test(undefined, undefined, undefined);
+    b.instance = instance;
+    var a = b.createTest();
+    expect(a.then).toNotBe(undefined);
+  });
+
+  it('Should reject  promise for POST /buckets/id/tests', () => {
+    var instance = {post: function(){}};
+    var id = uuid();
+    sinon.stub(instance, 'post', function() {
+      return new Promise((acc, rej) => {
+        rej(id);
+      });
+    } )
+    var b = new Test(undefined, undefined, undefined);
+    b.instance = instance;
+    b.createTest()
+    .then(
+      (data) => {expect(0).toBe(1);},
+      (err) => {expect(err).toEqual(id);}
+    );
+  });
+
+  it('Should resolve promise for POST /buckets/id/tests', () => {
+    var instance = {post: function(){}};
+    var id = uuid();
+    sinon.stub(instance, 'post', function() {
+      return new Promise((acc, rej) => {
+        acc('testDetailApiResponse');
+      });
+    } )
+    var b = new Test(undefined, undefined, undefined);
+    b.instance = instance;
+    b.createTest()
+    .then(
+      (data) => {expect(data).toEqual('testDetailApiResponse');},
       (err) => {expect(0).toBe(1);}
     );
   });
