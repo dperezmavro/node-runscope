@@ -1,3 +1,7 @@
-const path = require('path');
+const core = require('./dist/core.js');
+const runscope = require('./dist/runscope.js')
 
-module.exports = require(path.resolve(__dirname, './clients/all.js'));
+module.exports = {
+  ...core,
+  runscope
+}

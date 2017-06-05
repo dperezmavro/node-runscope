@@ -1,7 +1,13 @@
-module.exports = {
-    Account: require('./account.js'),
-    Bucket: require('./bucket.js'),
-    Environment: require('./environment.js'),
-    Team: require('./team.js'),
-    Test: require('./test.js')
+import Account from './account.js'
+import Bucket from './bucket.js'
+import Environment from './environment.js'
+import Team from './team.js'
+import Test from './test.js'
+
+export {
+    Account,
+    Bucket,
+    Environment,
+    Team,
+    Test
 }

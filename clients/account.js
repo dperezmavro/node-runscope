@@ -1,33 +1,35 @@
-var Runscope = require('../lib/runscope.js');
+import Runscope from 'runscope'
 
 class Account extends Runscope {
-    constructor(token){
-        super(token);
-        this.data = undefined;
-    }
+  constructor(token) {
+    super(token)
+    this.data = undefined
+  }
 
-    getAccountUrl(){
-        return '/account';
-    }
+  getAccountUrl() {
+    return '/account'
+  }
 
-    /**
-    * Get the current account details.
-    *
-    * @see [Account Resource]{@link https://www.runscope.com/docs/api/account}
-    * @returns {Object} Account object.
-    */
-    accountResource(){
-        return new Promise((acc, rej) => {
-            this.get(this.getAccountUrl())
-            .then((data) => {
-                this.data = data.data;
-                acc(data.data);
-            },
-            (err) => {
-                rej(err);
-            });
-        });
-    }
+  /**
+  * Get the current account details.
+  *
+  * @see [Account Resource]{@link https://www.runscope.com/docs/api/account}
+  * @returns {Object} Account object.
+  */
+  accountResource() {
+    return new Promise(
+      (acc, rej) => {
+      this.get(
+        this.getAccountUrl()
+      ).then(
+        (data) => {
+          this.data = data.data
+          acc(data.data)
+        },
+        rej
+      )
+    })
+  }
 }
 
-module.exports = Account;
+export default Account
