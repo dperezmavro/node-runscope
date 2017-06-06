@@ -16,4 +16,5 @@ deployment:
   dev:
     branch: master
     commands:
+      - npm run make
       - npm publish
