@@ -10,8 +10,7 @@ dependencies:
 
 test:
   override:
-    - npm run make
-    - npm test
+    - echo 'not yet'
 
 deployment:
   dev:
