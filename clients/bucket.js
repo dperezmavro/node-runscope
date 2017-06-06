@@ -61,8 +61,8 @@ class Bucket extends Runscope {
     })
   }
 
-  generateTestListUrl() {
-    return `/buckets/${this.bucketKey}/tests`
+  generateTestListUrl(count = 20) {
+    return `/buckets/${this.bucketKey}/tests?count=${count}`
   }
   /**
   * @see https://www.runscope.com/docs/api/tests#list
