@@ -61,16 +61,16 @@ class Bucket extends Runscope {
     })
   }
 
-  generateTestListUrl(count = 20) {
+  generateTestListUrl(count) {
     return `/buckets/${this.bucketKey}/tests?count=${count}`
   }
   /**
   * @see https://www.runscope.com/docs/api/tests#list
   */
-  getTestList() {
+  getTestList(count = 20) {
     return new Promise((acc, rej) => {
       this.get(
-        this.generateTestListUrl()
+        this.generateTestListUrl(count)
       ).then(
         (data) => {
           this.testList = data.data
