@@ -14,8 +14,7 @@
   "scripts": {
     "coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha test/**/*.js",
     "lint": "./node_modules/.bin/eslint *.js",
-    "make": "./node_modules/webpack/bin/webpack.js",
-    "start": "echo \"TODO yet\" && exit 1",
+    "make": "./node_modules/.bin/webpack",
     "test": "npm run make && ./node_modules/mocha/bin/mocha test/"
   },
   "author": "Dionisio Perez-Mavrogenis",
@@ -25,13 +24,36 @@
   },
   "devDependencies": {
     "app-root-path": "^2.0.1",
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-dynamic-import-node": "^1.0.2",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "babel-plugin-syntax-object-rest-spread": "^6.13.0",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
+    "babel-plugin-transform-regenerator": "^6.24.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-es2017": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
     "eslint": "^3.15.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-node": "^5.0.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-react": "^7.0.1",
+    "eslint-plugin-standard": "^3.0.1",
     "expect": "^1.20.2",
     "istanbul": "^0.4.5",
     "js-beautify": "^1.6.8",
     "mocha": "^3.2.0",
     "mocha-istanbul": "^0.3.0",
     "sinon": "^1.17.7",
-    "uuid": "^3.0.1"
+    "uglifyjs-webpack-plugin": "^0.4.3",
+    "uuid": "^3.0.1",
+    "webpack": "^2.6.1"
   }
 }
