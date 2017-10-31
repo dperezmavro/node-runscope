@@ -39,13 +39,6 @@ describe('Account', () => {
     expect(a).toExist()
   })
 
-  it('Should extend runscope', () => {
-    var b = new Account(undefined);
-    expect(
-      b instanceof Runscope
-    ).toBe(true);
-  });
-
   it('Should return /accounts url', () => {
     var a = new Account(undefined);
     expect(a.getAccountUrl()).toEqual('/account');

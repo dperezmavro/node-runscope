@@ -26,11 +26,6 @@ describe('Team', () => {
     expect(Team).toNotEqual({});
   });
 
-  it('Should extend runscope', () => {
-    var b = new Team(undefined);
-    expect(b instanceof Runscope).toBe(true);
-  });
-
   it('Should return /teams/id/people url', () => {
     var a = new Team(undefined);
     var id = uuid();

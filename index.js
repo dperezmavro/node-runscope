@@ -2,6 +2,7 @@ const {
   Account,
   Bucket,
   Environment,
+  Result,
   Team,
   Test
 } = require('./dist/all.js');
@@ -11,6 +12,7 @@ module.exports = {
   Account,
   Bucket,
   Environment,
+  Result,
   Team,
   Test,
   Runscope

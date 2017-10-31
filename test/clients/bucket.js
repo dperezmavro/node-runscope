@@ -85,11 +85,6 @@ describe('Bucket', () => {
     expect(Bucket).toNotEqual({});
   });
 
-  it('Should extend runscope', () => {
-    var b = new Bucket(undefined);
-    expect(b instanceof Runscope).toBe(true);
-  });
-
   it('Should return the bucket list url', () => {
     var b = new Bucket(undefined, undefined);
     expect(b.getBucketListUrl()).toEqual("/buckets");
@@ -241,10 +236,12 @@ describe('Bucket', () => {
     });
   });
 
-  it('Should generate test details url', () => {
+  it('Should generate test list url', () => {
     var id = uuid();
     var bucket = new Bucket(undefined, id);
-    expect(bucket.generateTestListUrl()).toEqual(`/buckets/${id}/tests`);
+    expect(bucket.generateTestListUrl()).toEqual(`/buckets/${id}/tests?count=30`);
+
+    expect(bucket.generateTestListUrl(40)).toEqual(`/buckets/${id}/tests?count=40`);
   });
 
   it('Should return Promise for /buckets/id/tests', () => {

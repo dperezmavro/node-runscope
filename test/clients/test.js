@@ -89,11 +89,6 @@ describe('Test', () => {
     expect(Test).toNotEqual({});
   });
 
-  it('Should extend runscope', () => {
-    var b = new Test(undefined, undefined, undefined);
-    expect(b instanceof Runscope).toBe(true);
-  });
-
   it('Should instantiate', () => {
     let a = new Test()
     expect(a).toExist()

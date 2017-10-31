@@ -22,13 +22,6 @@ describe('Environment', () => {
     expect(a).toExist()
   })
 
-  it('Should extend runscope', () => {
-    const b = new Environment(undefined, undefined, undefined);
-    expect(
-      b instanceof Runscope
-    ).toBe(true);
-  });
-
   it('Should generate /buckets/id/tests/id/environments url', () => {
     var tid = uuid();
     var bid = uuid();
